@@ -1,0 +1,34 @@
+<ion-header >
+  <ion-toolbar class='my-toolbar'>
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-button class ='login-button' *ngIf="!login" slot="end" (click)="openLogin()" >
+      <ion-icon slot="end" name="log-in-outline"></ion-icon>
+      <ion-label>Login</ion-label>
+    </ion-button>
+    <ion-button class='login-button' *ngIf="login" slot="end" (click)="openLogout()" lines="none">
+      <ion-icon slot="end" name="log-out-outline"></ion-icon>
+      <ion-label>Logout</ion-label>
+    </ion-button>
+    <ion-title>
+      <img src="/assets/enisyst_blue.png" alt="" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item  *ngIf="login" color="success"> 
+    <ion-label >Angemeldet als: {{login_name}}</ion-label>
+  </ion-item>
+  
+  <img class='center' src="/assets/charging_station.jpg" alt="" />
+
+  <ion-button class='scan-button' expand='block' margin (click)="loginEnilyser()">Enilyser</ion-button>
+
+  <ion-button class='scan-button' expand='block' margin (click)="scan()">Scanne QR Code</ion-button>
+  
+
+
+
+</ion-content>

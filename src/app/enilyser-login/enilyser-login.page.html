@@ -1,0 +1,45 @@
+
+<ion-header>
+  <ion-toolbar class='my-toolbar'>
+    <ion-title>Anmelden auf {{enilyser_name}}</ion-title>
+    <ion-button class='close-button'slot="end" (click)="closeModal()">
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form #form="ngForm" (ngSubmit)="login(form)">
+
+    <ion-item lines="none">
+      <ion-label class='font'>
+        Benutzername oder Email Adresse
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none" class="input-label">
+      <ion-icon slot="start" class="input-icon" name="person"></ion-icon>
+      <ion-input class='font' name="text" type="text" ngModel required></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label class='font'>
+        Passwort
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none" class="input-label">
+      <ion-icon slot="start" class="input-icon" name="lock-closed"></ion-icon>
+      <ion-icon *ngIf="!showPassword" slot="end" name="eye" class="show-icon" (click)="showHidePassword()"></ion-icon>
+      <ion-icon *ngIf="showPassword" slot="end" name="eye-off" class="show-icon" (click)="showHidePassword()"></ion-icon>
+      <ion-input class='font' name="password" [type]="password_type" ngModel required></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button class='login-button' type="submit" expand="block">Anmelden</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+  
+</ion-content>

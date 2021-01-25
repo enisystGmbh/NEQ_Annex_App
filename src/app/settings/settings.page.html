@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar class='my-toolbar'>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Einstellungen</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <ion-label class='header-label'>
+    <b>Kontakte</b>
+  </ion-label>
+
+  <ion-item class="item-grid">
+    <ion-label>
+      <ion-grid>
+        <ion-row>
+          <p class="font">enisyst GmbH</p>
+        </ion-row>
+        <ion-row>
+          <p class="font">Robert-Bosch-Str. 8/1</p>
+        </ion-row>
+        <ion-row>
+          <p class="font">72124 Pliezhausen</p>
+        </ion-row>
+      </ion-grid>
+    </ion-label>
+  </ion-item>
+
+  <ion-item class="item-grid-row">
+    <ion-label>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <p class="font">info@enisyst.de</p>
+          </ion-col>
+          <ion-col>
+            <ion-button class='button-contact' (click)="sendNow('info@enisyst.de')">
+              <ion-icon name="mail-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <p class="font">www.enisyst.de</p>
+          </ion-col>
+          <ion-col>
+            <ion-button class='button-contact' (click)="openPage('https://www.enisyst.de')">
+              <ion-icon name="globe-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-label>
+  </ion-item>
+
+  <ion-item class="item-grid-row">
+    <ion-label>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-row>
+              <p class="font">Dieter Ebinger</p>
+            </ion-row>
+            <ion-row>
+              <p class="font">tel: 07127-349 79 88</p>
+            </ion-row>
+          </ion-col>
+          <ion-col>
+            <ion-button class='button-contact' (click)="callNow('071273497988')">
+              <ion-icon name="call-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-label>
+  </ion-item>
+
+  <ion-item class="item-grid-row">
+    <ion-label>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-row>
+              <p class="font">Dr. Dirk Pietruschka</p>
+            </ion-row>
+            <ion-row>
+              <p class="font">tel: 07127-349 79 87</p>
+            </ion-row>
+          </ion-col>
+          <ion-col>
+            <ion-button class='button-contact' (click)="callNow('071273497987')">
+              <ion-icon name="call-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-label>
+  </ion-item>
+
+  <br>
+  <ion-label class='header-label'>
+    <b>Recht und Informationen</b>
+  </ion-label>
+
+
+  <ion-item class='item' (click)="openPage('https://www.enisyst.de/impressum/')">
+    Impressum
+  </ion-item>
+
+  <ion-item class='item' (click)="openPage('https://www.enisyst.de/datenschutz/')">
+    Datenschutz
+  </ion-item>
+  <ion-item class='item' (click)="goToLicense()">
+    Lizenzen
+  </ion-item>
+  <ion-item class='item'>
+    <small>Copyright@2020 enisyst GmbH</small>
+  </ion-item>
+
+
+
+
+</ion-content>

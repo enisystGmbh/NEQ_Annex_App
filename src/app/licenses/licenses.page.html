@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar class='my-toolbar'>
+    <ion-buttons slot="start" >
+        <ion-back-button defaultHref="tabs/settings" autoHide="false"></ion-back-button>
+      </ion-buttons>
+    <ion-title>Lizenzen</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list *ngFor="let id of key; index as i">
+    <ion-item class='font'>    
+      <ion-col size="9"><small>{{ data[id].name}} v.{{ data[id].version }} ({{ data[id].license }}) </small></ion-col>
+      <ion-col size="3"> <small><a href ="{{ data[id].repository }}">Repository</a></small></ion-col>
+    </ion-item>
+  </ion-list>
+</ion-content>

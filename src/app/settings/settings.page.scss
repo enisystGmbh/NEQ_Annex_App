@@ -1,0 +1,30 @@
+.my-toolbar{
+    --background:  var(--ion-color-primary);
+    color:white
+}
+
+.font{
+    font-family:verdana;
+}
+
+.item{
+    left:0.1em;
+}
+
+.item-grid{
+    left:-0.2em;
+}
+.item-grid-row{
+    left:-0.55em;
+}
+.header-label{
+    padding-left:1em;
+    font-family:verdana;
+    color:#003878;
+}
+
+.button-contact{
+    position: fixed;
+    right: 10px;
+    --box-shadow:none;
+}

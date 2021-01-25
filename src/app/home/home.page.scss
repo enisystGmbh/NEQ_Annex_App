@@ -1,0 +1,65 @@
+#container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #8c8c8c;
+
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+.my-toolbar{
+  --background:  var(--ion-color-primary);
+  color:white
+}
+
+.login-button{
+  --box-shadow:none;
+  font-family:verdana;
+}
+
+.center {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  margin:auto;
+  font-family:verdana;
+
+}
+
+.scan-button{
+  position: fixed;
+  left: 0;
+  bottom: 10px;
+  right: 0;
+
+}
+
+.login-item{
+  border-radius: 25px;
+  background: #73AD21;
+  padding: 20px;
+  width: 200px;
+  height: 150px; 
+
+}
