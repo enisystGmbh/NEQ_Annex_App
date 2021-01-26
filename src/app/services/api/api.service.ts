@@ -57,19 +57,20 @@ export class ApiService {
     }
     console.log(formData)
     
-    let headers = {
+    let post_headers = {
       "Accept": "application/json",
-      "api-auth": 'apiAuthToken String',
-      "User-Auth": 'userAuthToken String',
       "Content-Type":'application/x-www-form-urlencoded',
       'Access-Control-Expose-Headers': '*'
     }
     
-    this.httpCommon.setDataSerializer('urlencoded');
-    this.httpCommon.post('https://deveniserv.de/login/', formData, headers).then(api_response => {
+    let get_headers = {
+      "withCredentials":"true"
+    }
+
+    this.httpCommon.post('https://deveniserv.de/login/', formData, post_headers).then(api_response => {
       console.log(api_response)
       console.log(api_response.headers)
-      this.httpCommon.get('https://deveniserv.de/enilyser/D4363910BE78/dist/index.html',{},{headers:{withCredentials:'true'}}).then(response=>{
+      this.httpCommon.get('https://deveniserv.de/enilyser/D4363910BE78/dist/index.html',{},get_headers).then(response=>{
         console.log(response)
       })
       
