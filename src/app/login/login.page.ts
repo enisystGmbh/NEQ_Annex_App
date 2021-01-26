@@ -61,14 +61,15 @@ export class LoginPage implements OnInit {
   }
 
   login(form: NgForm) {
-    this.api.signIn(form.value.text, form.value.password).subscribe(
+    this.api.signIn(form.value.text, form.value.password)
+    /*.subscribe(
       res => {
         this.alertService.presentToast('Anmeldung erfolgreich!')
         this.closeModal()},
       err => {
         this.alertService.showError(err);
       }
-    );
+    );*/
   }
   
   /*

@@ -16,8 +16,9 @@ const ENILYSER_KEY = 'enilyserstoragekey';
   providedIn: 'root'
 })
 export class ApiService {
+  RESPONSE:any;
   public authState  = new BehaviorSubject(null);
- 
+
   constructor(
     private http: HttpClient, 
     private storage: Storage,
@@ -32,6 +33,7 @@ export class ApiService {
     })
   }
 
+  /*
   signIn(username, password) {
     return this.http.post(`${environment.API_URL}/wp-json/jwt-auth/v1/token`, {username, password}).pipe(
       switchMap(data => {
@@ -42,12 +44,40 @@ export class ApiService {
       })
     );
   }
-  
-  /*
-  signUp(username, email, password) {
-    return this.http.post(`${environment.API_URL}/wp/v2/users/register`, { username, email, password });
+*/
+
+  signIn(username, password){
+
+   var formData = {
+    'log' : 'neele.kemper',
+    'pwd' : 'test',
+    'submit' : 'Log In',
+    'redirect_to' : 'https://deveniserv.de',
+    'testcookie' : '1',
+    }
+    console.log(formData)
+    
+    let headers = {
+      "Accept": "application/json",
+      "api-auth": 'apiAuthToken String',
+      "User-Auth": 'userAuthToken String',
+      "Content-Type":'application/x-www-form-urlencoded',
+      'Access-Control-Expose-Headers': '*'
+    }
+    
+    this.httpCommon.setDataSerializer('urlencoded');
+    this.httpCommon.post('https://deveniserv.de/login/', formData, headers).then(api_response => {
+      console.log(api_response)
+      console.log(api_response.headers)
+      this.httpCommon.get('https://deveniserv.de/enilyser/D4363910BE78/dist/index.html',{},{headers:{withCredentials:'true'}}).then(response=>{
+        console.log(response)
+      })
+      
+    });
+     
   }
-  */
+  
+
 
   resetPassword(usernameOrEmail) {
     console.log(usernameOrEmail)
