@@ -70,9 +70,22 @@ export class ApiService {
     this.httpCommon.post('https://deveniserv.de/login/', formData, post_headers).then(api_response => {
       console.log(api_response)
       console.log(api_response.headers)
-      this.httpCommon.get('https://deveniserv.de/enilyser/D4363910BE78/dist/index.html',{},get_headers).then(response=>{
+      
+      // this.httpCommon.get('https://deveniserv.de/enilyser/D4363910BE78/dist/index.html',{},get_headers).then(response=>{
+      //   console.log(response)
+      // })
+      
+      this.httpCommon.get('https://deveniserv.de/enilyser/D4363910BE78/web.dwh?V=%23%24enichart_GetTodaysDataColumnByIDName(%27zlGes%27)',{},get_headers).then(response=>{
+        console.log('Response_Test:')
         console.log(response)
       })
+
+      // post request
+      this.httpCommon.post('https://deveniserv.de/enilyser/D4363910BE78/web.dwh',{},get_headers).then(response=>{
+        console.log('Post Response_Test:')
+        console.log(response)
+      })
+      
       
     });
      
