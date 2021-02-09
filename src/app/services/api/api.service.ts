@@ -33,10 +33,11 @@ export class ApiService {
     })
   }
 
-  /*
+  
   signIn(username, password) {
     return this.http.post(`${environment.API_URL}/wp-json/jwt-auth/v1/token`, {username, password}).pipe(
       switchMap(data => {
+
         return from(this.storage.set(JWT_KEY, data));
       }),
       tap(data => {
@@ -44,52 +45,91 @@ export class ApiService {
       })
     );
   }
-*/
 
-  signIn(username, password){
+  getPrivatePosts() {
 
-   var formData = {
-    'log' : 'neele.kemper',
-    'pwd' : 'test',
-    'submit' : 'Log In',
-    'redirect_to' : 'https://deveniserv.de',
-    'testcookie' : '1',
-    }
-    console.log(formData)
-    
-    let post_headers = {
-      "Accept": "application/json",
-      "Content-Type":'application/x-www-form-urlencoded',
-      'Access-Control-Expose-Headers': '*'
-    }
-    
-    let get_headers = {
-      "withCredentials":"true"
-    }
-
-    this.httpCommon.post('https://deveniserv.de/login/', formData, post_headers).then(api_response => {
-      console.log(api_response)
-      console.log(api_response.headers)
-      
-      // this.httpCommon.get('https://deveniserv.de/enilyser/D4363910BE78/dist/index.html',{},get_headers).then(response=>{
-      //   console.log(response)
-      // })
-      
-      this.httpCommon.get('https://deveniserv.de/enilyser/D4363910BE78/web.dwh?V=%23%24enichart_GetTodaysDataColumnByIDName(%27zlGes%27)',{},get_headers).then(response=>{
-        console.log('Response_Test:')
-        console.log(response)
+    return this.http.post(`${environment.API_URL}/wp-json/ionic/v1/enilyser/D4363910BE78/web.dwh?V=%23%24enichart_GetTodaysDataColumnByIDName(%27zlGes%27)`, {}).pipe(
+      map(res => {
+        console.log(res)
+        return res;
+        // return from(this.storage.set(JWT_KEY, data));
       })
+    );
 
-      // post request
-      this.httpCommon.post('https://deveniserv.de/enilyser/D4363910BE78/web.dwh',{},get_headers).then(response=>{
-        console.log('Post Response_Test:')
-        console.log(response)
-      })
-      
-      
-    });
-     
+    // return this.http.post<any[]>(`${environment.API_URL}/wp-json/ionic/v1/enilyser/D4363910BE78/web.dwh?V=%23%24enichart_GetTodaysDataColumnByIDName(%27zlGes%27)`).pipe(
+    //   map(data => {
+    //     console.log(data)
+
+    //     for (let post of data) {
+    //       if (post['_embedded']['wp:featuredmedia']) {
+    //         post.media_url =
+    //           post['_embedded']['wp:featuredmedia'][0]['media_details'].sizes['medium'].source_url;
+    //       }
+    //     }
+    //     return data;
+    //   })
+    // );
   }
+
+  // signIn(username, password){
+
+  //  var formData = {
+  //   'log' : 'neele.kemper',
+  //   'pwd' : 'test',
+  //   'submit' : 'Log In',
+  //   'redirect_to' : 'https://deveniserv.de',
+  //   'testcookie' : '1',
+  //   }
+  //   console.log(formData)
+    
+  //   let post_headers = {
+  //     "Accept": "*/*",
+  //     "Cache-Control": "no-cache",
+  //     "Content-Type":'application/x-www-form-urlencoded',
+  //     'Access-Control-Expose-Headers': '*'
+  //   }
+    
+  //   let get_headers = {
+  //     "withCredentials":"true"
+  //   }
+
+  //   this.httpCommon.post('https://deveniserv.de/login/', formData, post_headers).then(api_response => {
+  //     console.log(api_response)
+  //     console.log(api_response.headers)
+      
+  //     // this.httpCommon.get('https://deveniserv.de/enilyser/D4363910BE78/dist/index.html',{},get_headers).then(response=>{
+  //     //   console.log(response)
+  //     // })
+      
+  //     this.httpCommon.get('https://deveniserv.de/enilyser/D4363910BE78/web.dwh?V=%23%24enichart_GetTodaysDataColumnByIDName(%27zlGes%27)',{},get_headers).then(response=>{
+  //       console.log('Response_Test:')
+  //       console.log(response)
+  //     })
+
+  //     this.httpCommon.get('https://deveniserv.de/enilyser/D4363910BE78/web.dwh?V=%23%24enichart_GetTodaysDataColumnByIDName(%27zlGes%27)',get_headers,post_headers).then(response=>{
+  //       console.log('Response_Test0:')
+  //       console.log(response)
+  //     })
+
+  //     // post request
+  //     this.httpCommon.post('https://deveniserv.de/enilyser/D4363910BE78/web.dwh',{},get_headers).then(response=>{
+  //       console.log('Post Response_Test1:')
+  //       console.log(response)
+  //     })
+      
+      
+  //   });
+
+  //   return this.http.post(`${environment.API_URL}/wp-json/jwt-auth/v1/token`, {username, password}).pipe(
+  //     switchMap(data => {
+  //       return from(this.storage.set(JWT_KEY, data));
+  //     }),
+  //     tap(data => {
+  //       this.authState.next(data);
+  //     })
+  //   );
+     
+  // }
   
 
 

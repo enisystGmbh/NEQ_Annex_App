@@ -22,7 +22,25 @@
     <ion-label >Angemeldet als: {{login_name}}</ion-label>
   </ion-item>
   
-  <img class='center' src="/assets/charging_station.jpg" alt="" />
+  <!-- <img class='center' src="/assets/charging_station.jpg" alt="" /> -->
+
+  <ion-button class='button' expand='block' margin (click)="scan0()">TEST</ion-button>
+
+  <ion-card *ngFor="let post of posts">
+    <ion-card-header>
+      <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>
+      <ion-card-subtitle>{{ post.date_gmt | date }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <img [src]="post.media_url" *ngIf="post.media_url">
+      <div [innerHTML]="post.excerpt.rendered"></div>
+ 
+      <!-- Example logic to open a details page below -->
+      <!-- <ion-button expand="full" fill="clear" [routerLink]="['/', 'posts', post.id]" text-right>Read More...</ion-button> -->
+ 
+    </ion-card-content>
+  </ion-card>
+
 
   <ion-button class='scan-button' expand='block' margin (click)="loginEnilyser()">Enilyser</ion-button>
 

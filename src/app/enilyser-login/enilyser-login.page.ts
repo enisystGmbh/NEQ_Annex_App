@@ -39,9 +39,9 @@ export class EnilyserLoginPage implements OnInit {
     this.showPassword = !this.showPassword
   }
 
-  /*
+  
   login(form: NgForm) {
-    this.api.loginEnilyser(form.value.text, form.value.password).subscribe(
+    this.api.signIn(form.value.text, form.value.password).subscribe(
       res => {
         console.log(res)
         this.alertService.presentToast('Anmeldung erfolgreich!')
@@ -50,11 +50,11 @@ export class EnilyserLoginPage implements OnInit {
         this.alertService.showError(err);
       }
     );
-  }*/
+  }
 
   
-  login(form: NgForm) {
-    this.api.loginEnilyser(form.value.text, form.value.password)
-  }
+  // login(form: NgForm) {
+  //   this.api.loginEnilyser(form.value.text, form.value.password)
+  // }
 
 }

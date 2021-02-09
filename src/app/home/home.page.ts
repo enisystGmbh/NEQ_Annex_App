@@ -20,6 +20,10 @@ import { EnilyserLoginPage } from '../enilyser-login/enilyser-login.page';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+ 
+  user = this.apiService.getCurrentUser();
+  posts = [];
+
   QRSCANNED_DATA: string;
   scanSubscription: any;
   
@@ -37,12 +41,22 @@ export class HomePage implements OnInit {
     private apiService:ApiService,
     private http: HttpClient,
     ) {
-      this.tabNavService.scanEndObservable.subscribe(value => {
-        if (value){
-          this.adjustView()
-          this.scanSubscription.unsubscribe();
+
+      // this.tabNavService.scanEndObservable.subscribe(value => {
+      //   if (value){
+      //     this.adjustView()
+      //     this.scanSubscription.unsubscribe();
+      //   }
+      // })
+
+      this.user.subscribe(user => {
+        if (user) {
+          this.loadPrivatePosts();
+        } else {
+          this.posts = [];
         }
-      })
+      });
+
   }
 
   ngOnInit() { 
@@ -50,9 +64,22 @@ export class HomePage implements OnInit {
 
   ionViewWillEnter(){
   //    
-}
+  }
+
+  loadPrivatePosts() {
+    this.apiService.getPrivatePosts().subscribe(res => {
+      // this.posts = res;
+      console.log(res);
+    });
+  }
+
   ionViewWillLeave() {
     this.stopScanning();
+  }
+
+
+  scan0() {
+    this.apiService.getPrivatePosts()
   }
 
   scan() {
