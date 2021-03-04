@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, from } from 'rxjs';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { HTTP } from '@ionic-native/http/ngx';
 
 import { Platform } from '@ionic/angular';
 import { environment } from '../../../environments/environment';
@@ -9,8 +8,6 @@ import { map, switchMap, tap } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
 
 const JWT_KEY = 'jwtstoragekey';
-
-const ENILYSER_KEY = 'enilyserstoragekey';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +18,8 @@ export class ApiService {
   constructor(
     private http: HttpClient, 
     private storage: Storage,
-     private plt: Platform,
-     private httpCommon :HTTP) {
+    private plt: Platform
+     ) {
     this.plt.ready().then(() => {
       this.storage.get(JWT_KEY).then(data => {
         if (data) {
@@ -42,12 +39,20 @@ export class ApiService {
       })
     );
   }
-  
-  /*
-  signUp(username, email, password) {
-    return this.http.post(`${environment.API_URL}/wp/v2/users/register`, { username, email, password });
+
+  getPrivatePosts() {
+    this.http.post(`${environment.API_URL}/wp-json/ionic/v1/enilyser/D4363910BE78/web.dwh?V=%23%23getMG%28%29`, {}).subscribe(
+      data=> console.log("Enilyser: ",data)
+    )
+        
   }
-  */
+ 
+    
+  checkToken(){
+    this.http.post(`${environment.API_URL}/wp-json/jwt-auth/v1/token/validate`,{}).subscribe(
+      data=> console.log("Token: ", data)
+    )
+  }
 
   resetPassword(usernameOrEmail) {
     console.log(usernameOrEmail)
@@ -74,20 +79,4 @@ export class ApiService {
     });
   }
 
-
-  loginEnilyser(username,password){
-    // const responseData = dwhRequest([`##Logout()`, `##Login('${username}','${password}')`]);
-   // console.log(responseData)
-
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json')
-    headers.append('Access-Control-Allow-Headers','*')
-    headers.append('Accept', '*/*')
-    headers.append('Access-Control-Request-Method', 'POST') 
-    headers.append('Access-Control-Request-Headers',' Content-Type, Authorization')
-
-    return this.http.post(`https://deveniserv.de/enilyser/${environment.ENILYSER_ID}/web.dwh`,{}).subscribe( 
-      response => console.log(response)
-    )
-  }
 }

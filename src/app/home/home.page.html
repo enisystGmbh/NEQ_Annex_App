@@ -22,10 +22,13 @@
     <ion-label >Angemeldet als: {{login_name}}</ion-label>
   </ion-item>
   
-  <img class='center' src="/assets/charging_station.jpg" alt="" />
+  <!-- <img class='center' src="/assets/charging_station.jpg" alt="" /> -->
 
-  <ion-button class='scan-button' expand='block' margin (click)="loginEnilyser()">Enilyser</ion-button>
+  <ion-button class='button' expand='block' margin (click)="scan0()">TEST</ion-button>
 
+  <ion-button class='button' expand='block' margin (click)="checkToken()">TOKEN</ion-button>
+
+  
   <ion-button class='scan-button' expand='block' margin (click)="scan()">Scanne QR Code</ion-button>
   
 
