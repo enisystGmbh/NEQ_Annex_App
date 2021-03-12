@@ -3,14 +3,10 @@
     <ion-buttons slot="start">
       <ion-menu-button ></ion-menu-button>
     </ion-buttons>
-    <ion-button class ='login-button' *ngIf="!login" slot="end" (click)="openLogin()" >
-      <ion-icon slot="end" name="log-in-outline"></ion-icon>
-      <ion-label>Login</ion-label>
+    <ion-button slot="end" class='popover-button' (click)="createPopover($event)">
+      <ion-icon name="person-outline" ></ion-icon>
     </ion-button>
-    <ion-button class='login-button' *ngIf="login" slot="end" (click)="openLogout()" lines="none">
-      <ion-icon slot="end" name="log-out-outline"></ion-icon>
-      <ion-label>Logout</ion-label>
-    </ion-button>
+      
     <ion-title>
       <img src="/assets/enisyst_blue.png" alt="" />
     </ion-title>
@@ -18,18 +14,28 @@
 </ion-header>
 
 <ion-content>
-  <ion-item  *ngIf="login" color="success"> 
-    <ion-label >Angemeldet als: {{login_name}}</ion-label>
-  </ion-item>
   
-  <!-- <img class='center' src="/assets/charging_station.jpg" alt="" /> -->
+  <img *ngIf="!enilyserLogin" class='center' src="/assets/charging_station.jpg" alt="" />
 
-  <ion-button class='button' expand='block' margin (click)="scan0()">TEST</ion-button>
-
-  <ion-button class='button' expand='block' margin (click)="checkToken()">TOKEN</ion-button>
-
+  <ion-card *ngIf="enilyserLogin">
+    <ion-card-header>
+      <ion-card-title>{{enilyserName}}</ion-card-title>
+      <ion-card-subtitle>{{enilyserID}}</ion-card-subtitle>
+      
+    </ion-card-header>
   
-  <ion-button class='scan-button' expand='block' margin (click)="scan()">Scanne QR Code</ion-button>
+    <ion-card-content>
+      <ion-item>
+        {{enilyserResponse}}
+      </ion-item>
+      <ion-button expand='block' margin (click)="logoutEnilyser()">
+        Abmelden vom Enilyser
+      </ion-button>
+    </ion-card-content>
+
+  </ion-card>
+  
+  <ion-button class='scan-button' expand='block' margin (click)="tryScanning()">Scanne QR Code</ion-button>
   
 
 

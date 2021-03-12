@@ -19,10 +19,12 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
+import { AccountPopoverPageModule } from '../app/account-popover/account-popover.module';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule.forRoot()],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, AccountPopoverPageModule, IonicStorageModule.forRoot()],
   providers: [
     StatusBar,
     SplashScreen,

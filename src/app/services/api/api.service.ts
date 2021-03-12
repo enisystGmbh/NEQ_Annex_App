@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, from } from 'rxjs';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, from ,Observable, throwError } from 'rxjs';
+import { HttpClient} from '@angular/common/http';
 
 import { Platform } from '@ionic/angular';
 import { environment } from '../../../environments/environment';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap,catchError } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
+
 
 const JWT_KEY = 'jwtstoragekey';
 
@@ -32,6 +33,7 @@ export class ApiService {
   signIn(username, password) {
     return this.http.post(`${environment.API_URL}/wp-json/jwt-auth/v1/token`, {username, password}).pipe(
       switchMap(data => {
+        this.checkToken()
         return from(this.storage.set(JWT_KEY, data));
       }),
       tap(data => {
@@ -40,26 +42,28 @@ export class ApiService {
     );
   }
 
-  getPrivatePosts() {
-    this.http.post(`${environment.API_URL}/wp-json/ionic/v1/enilyser/D4363910BE78/web.dwh?V=%23%23getMG%28%29`, {}).subscribe(
-      data=> console.log("Enilyser: ",data)
-    )
+
+  getEnilyserPosts(enilyser) {
+    return this.http.post(`${environment.API_URL}/wp-json/ionic/v1/enilyser/${enilyser}/web.dwh?V=%23%23getMG%28%29`, {}).pipe(
+      map((data) => {
+        return data;
+      }), catchError( error => {
+        return throwError( error );
+      })
+   )
         
   }
- 
     
   checkToken(){
-    this.http.post(`${environment.API_URL}/wp-json/jwt-auth/v1/token/validate`,{}).subscribe(
-      data=> console.log("Token: ", data)
-    )
+    return this.http.post(`${environment.API_URL}/wp-json/jwt-auth/v1/token/validate`,{}).pipe(
+      map((data) => {
+        return data;
+      }), catchError( error => {
+        return throwError( error );
+      })
+   )
   }
 
-  resetPassword(usernameOrEmail) {
-    console.log(usernameOrEmail)
-    return this.http.post(`${environment.API_URL}/wp-json/bdpwr/v1/set-password`, { email: usernameOrEmail });
-    //return this.http.post(`${environment.API_URL}/wp-json/wp/v2/users/lost-password`, { user_login: usernameOrEmail });
-  }
- 
   getCurrentUser() {
     return this.authState.asObservable();
   }
@@ -71,11 +75,8 @@ export class ApiService {
   logout() {
     this.storage.remove(JWT_KEY).then(() => {
       this.authState.next(null);
-      environment.TOKEN = 'token';
-      environment.EMAIL = 'user_mail';
-      environment.NICE_NAME = 'user_nicename';
-      environment.DISPLAY_NAME = 'user_display_name';
-      console.log(environment.LOGIN)
+      this.checkToken()
+      console.log('Login: ', environment.LOGIN)
     });
   }
 

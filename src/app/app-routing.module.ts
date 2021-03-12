@@ -11,8 +11,8 @@ const routes: Routes = [
     loadChildren: () => import('./licenses/licenses.module').then( m => m.LicensesPageModule)
   },
   {
-    path: 'enilyser-login',
-    loadChildren: () => import('./enilyser-login/enilyser-login.module').then( m => m.EnilyserLoginPageModule)
+    path: 'account-popover',
+    loadChildren: () => import('./account-popover/account-popover.module').then( m => m.AccountPopoverPageModule)
   },
 
 ];

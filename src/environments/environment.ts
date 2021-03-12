@@ -10,11 +10,6 @@ export const environment = {
   ENILYSER_ID: 'id',//'https://deveniserv.de/enilyser/985DAD48D090/visu/index.htm', // Dev Energiehaus Pliezhausen
   
   LOGIN:  false,
-
-  TOKEN: 'token',
-  EMAIL: 'user_mail',
-  NICE_NAME: 'user_nicename',
-  DISPLAY_NAME: 'user_display_name',
 };
 
 /*

@@ -7,6 +7,7 @@ import { Router } from '@angular/router'
 
 import { TabnavService } from '../app/services/tabnav/tabnav.service';
 import {ApiService} from '../app/services/api/api.service'
+
 import { environment } from '../environments/environment';
 
 
@@ -55,10 +56,6 @@ export class AppComponent {
           let currentUser = this.apiService.getUserValue();
           if (currentUser && currentUser.token){ 
             environment.LOGIN = true;
-            environment.TOKEN = currentUser.token;
-            environment.EMAIL = currentUser.user_mail;
-            environment.NICE_NAME = currentUser.user_nicename;
-            environment.DISPLAY_NAME = currentUser.user_display_name;
           } else {
             environment.LOGIN = false;
           }

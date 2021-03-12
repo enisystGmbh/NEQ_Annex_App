@@ -31,14 +31,4 @@ export class AlertService {
     }).then(alert => alert.present());
   }
 
-  async showError(err) {
-    const alert = await this.alertController.create({
-      header: err.error.code,
-      subHeader: err.error.data.status,
-      message: err.error.message,
-      buttons: ['OK']
-    });
-    await alert.present();
-  }
-
 }

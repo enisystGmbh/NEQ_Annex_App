@@ -1,0 +1,14 @@
+
+<ion-list>
+  <ion-list-header *ngIf="login"><b>Angemeldet als:</b></ion-list-header>
+  <ion-item *ngIf="login">{{user.user_display_name}}</ion-item>
+  <ion-item *ngIf="login">{{user.user_email}}</ion-item>
+  <ion-item *ngIf="login" (click)="openLogout()">
+    <ion-icon name="log-out-outline"></ion-icon>
+    Abmelden
+  </ion-item>
+  <ion-item *ngIf="!login" (click)="openLogin()">
+    <ion-icon name="log-in-outline"></ion-icon>
+    Anmelden
+  </ion-item>
+</ion-list>

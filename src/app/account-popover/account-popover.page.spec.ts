@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { EnilyserLoginPage } from './enilyser-login.page';
+import { AccountPopoverPage } from './account-popover.page';
 
-describe('EnilyserLoginPage', () => {
-  let component: EnilyserLoginPage;
-  let fixture: ComponentFixture<EnilyserLoginPage>;
+describe('AccountPopoverPage', () => {
+  let component: AccountPopoverPage;
+  let fixture: ComponentFixture<AccountPopoverPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EnilyserLoginPage ],
+      declarations: [ AccountPopoverPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(EnilyserLoginPage);
+    fixture = TestBed.createComponent(AccountPopoverPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

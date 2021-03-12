@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EnilyserLoginPageRoutingModule } from './enilyser-login-routing.module';
+import { AccountPopoverPageRoutingModule } from './account-popover-routing.module';
 
-import { EnilyserLoginPage } from './enilyser-login.page';
+import { AccountPopoverPage } from './account-popover.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EnilyserLoginPageRoutingModule
+    AccountPopoverPageRoutingModule
   ],
-  declarations: [EnilyserLoginPage]
+  declarations: [AccountPopoverPage]
 })
-export class EnilyserLoginPageModule {}
+export class AccountPopoverPageModule {}
