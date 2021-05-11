@@ -57,9 +57,9 @@ export class HomePage implements OnInit {
             this.enilyserName = data.name
             this.enilyserID = data.id
             this.enilyserLogin = true
-            this.apiService.getEnilyserPosts(data.id).subscribe(
-              data=> {this.enilyserResponse = data})
-            console.log('Enilyser Response: ', this.enilyserResponse)
+            //this.apiService.getEnilyserPosts(data.id).subscribe(
+            //  data=> {this.enilyserResponse = data})
+            //console.log('Enilyser Response: ', this.enilyserResponse)
           }
           else{
             this.enilyserLogin = false
@@ -105,26 +105,25 @@ export class HomePage implements OnInit {
     )
     return this.status
   }
+
   async presentLoading() {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
       message: 'Bitte warten...',
-      duration: 2000
+      duration: 750
     });
     await loading.present();
 
     await loading.onDidDismiss();
-    console.log('Loading dismissed!');
   }
 
   tryScanning(){
     this.status = this.checkToken()
     this.presentLoading()
-    setTimeout(() => {  console.log('start scanning');this.scan(); }, 2000);
+    setTimeout(() => {  console.log('start scanning');this.scan(); }, 750);
   }
 
   scan() {
-    console.log('Token status: ', this.status)
     if (this.status == 200){
       this.tabNavService.scanOpen =true;
       (window.document.querySelector('ion-app') as HTMLElement).classList.add('cameraView');
@@ -138,18 +137,14 @@ export class HomePage implements OnInit {
           document.getElementsByTagName("body")[0].style.opacity = "0";
 
           // start scanning
-          this.scanSubscription = this.qrScanner.scan().subscribe((text: string) => {
-
-            this.QRSCANNED_DATA = text;
+          this.scanSubscription = this.qrScanner.scan().subscribe((qrdata: string) => {
 
             this.adjustView()
 
             this.scanSubscription.unsubscribe();
             this.qrScanner.hide(); // hide camera preview
             this.qrScanner.destroy();
-
-            let obj = JSON.parse(this.QRSCANNED_DATA);
-            
+            let obj = JSON.parse(qrdata);
             if (obj.Permission == 'Enisyst2021'){
               this.signEnilyser(obj.ID,obj.Name)
             } else{
@@ -229,12 +224,11 @@ export class HomePage implements OnInit {
       'id': id,
       'name': name
     };
-    
     this.storage.set(ENILYSER, data)
     this.enilyserName = name;
     this.enilyserID = id;
     this.enilyserLogin = true;
-    this.apiService.getEnilyserPosts(id).subscribe(
+    this.apiService.chargingPost(id).subscribe(
       data=> {this.enilyserResponse = data}
     )
 

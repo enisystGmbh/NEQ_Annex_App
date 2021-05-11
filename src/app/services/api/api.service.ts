@@ -30,7 +30,7 @@ export class ApiService {
     })
   }
 
-  signIn(username, password) {
+  signIn(username, password) { 
     return this.http.post(`${environment.API_URL}/wp-json/jwt-auth/v1/token`, {username, password}).pipe(
       switchMap(data => {
         this.checkToken()
@@ -43,6 +43,7 @@ export class ApiService {
   }
 
 
+  /*
   getEnilyserPosts(enilyser) {
     return this.http.post(`${environment.API_URL}/wp-json/ionic/v1/enilyser/${enilyser}/web.dwh?V=%23%23getMG%28%29`, {}).pipe(
       map((data) => {
@@ -53,7 +54,23 @@ export class ApiService {
    )
         
   }
+  */
     
+  chargingPost(enilyser){
+      // as id you can use the email address
+      let user =  this.getCurrentUser()
+      //the url should be something like https://deveniserv.de/wp-json/ionic/v1/enilyser/${enilyser}/apiv4/objects/ladesaeule
+      return this.http.post(`${environment.API_URL}/enilyser/${enilyser}/apiv4/objects/ladesaeule`, {}).pipe(//{release:activation, id:'id'}
+        map((data) => {
+          console.log(data)
+          return data;
+        }), catchError( error => {
+          return throwError( error );
+        })
+     )
+  }
+
+
   checkToken(){
     return this.http.post(`${environment.API_URL}/wp-json/jwt-auth/v1/token/validate`,{}).pipe(
       map((data) => {

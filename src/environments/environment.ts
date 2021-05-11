@@ -6,8 +6,6 @@ export const environment = {
   production: false,
 
   API_URL: 'https://deveniserv.de', 
-  ENILYSER_NAME: 'enilyser',
-  ENILYSER_ID: 'id',//'https://deveniserv.de/enilyser/985DAD48D090/visu/index.htm', // Dev Energiehaus Pliezhausen
   
   LOGIN:  false,
 };
